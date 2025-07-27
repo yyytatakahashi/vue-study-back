@@ -1,18 +1,13 @@
 #!/usr/bin/env bash
 
-# Render 環境の JAVA_HOME 対応
-if [ -d "/opt/render/project/.java/openjdk" ]; then
-  export JAVA_HOME="/opt/render/project/.java/openjdk"
-elif [ -d "/opt/render/project/java/openjdk" ]; then
-  export JAVA_HOME="/opt/render/project/java/openjdk"
-else
-  echo "No valid JAVA_HOME found"
-  exit 1
-fi
+echo "Listing directories under /opt/render/project/"
+ls -al /opt/render/project/
 
-export PATH="$JAVA_HOME/bin:$PATH"
+echo "Searching for java under /opt/render/"
+find /opt/render/ -type d -name "*java*" || true
 
-# 実行
-./mvnw clean package
+echo "Env:"
+env | grep JAVA || true
 
+exit 1  # 強制終了（検証用）
 
