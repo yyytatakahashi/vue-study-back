@@ -1,13 +1,12 @@
 #!/usr/bin/env bash
 
-# Render の Java ランタイム環境変数を使用
+echo "JAVA_HOME set to $RENDER_RUNTIME_JAVA_HOME"
 export JAVA_HOME="$RENDER_RUNTIME_JAVA_HOME"
 export PATH="$JAVA_HOME/bin:$PATH"
 
-echo "JAVA_HOME set to $JAVA_HOME"
+# Javaの存在確認（デバッグ用）
 java -version
 
-# Maven Wrapper でビルド
+# Maven Wrapperでビルド
 ./mvnw clean package
-
 
